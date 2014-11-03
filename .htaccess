@@ -1,0 +1,49 @@
+#--------------------------------------------------------------------------------
+# Disallowing index view & tell Apache to follow symbolic links
+#--------------------------------------------------------------------------------
+
+Options -Indexes +FollowSymLinks
+
+
+
+
+
+
+
+
+#--------------------------------------------------------------------------------
+# Stop Apache from putting a trailing slash if requested URI is directory.
+#--------------------------------------------------------------------------------
+# It is needed to use with laravel.
+# If laravel gets a request with trailing slash, Laravel tries to remove the
+# slash and make a 301(parmanent) Redirect. And if DirectorySlash is on, then
+# Apache will redirect with a trailing slash. And It will cause Infinite Loop.
+#--------------------------------------------------------------------------------
+
+DirectorySlash Off
+
+
+
+
+
+
+
+
+#--------------------------------------------------------------------------------
+# Rewrite All the request which isn't started with public to public folder.
+# And non-www to www
+# We add this cause CloudFlare need www to function!!!
+#--------------------------------------------------------------------------------
+# We may need to chenge public -> /public
+# But It's working perfectly now! Who Cares!!!
+#--------------------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST} !^www\.
+    RewriteCond %{HTTP_HOST} !^localhost
+    RewriteCond %{HTTP_HOST} !^127.0.0.1
+	RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+    RewriteCond %{REQUEST_URI} !^public
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

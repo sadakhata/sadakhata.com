@@ -1,0 +1,71 @@
+<IfModule mod_rewrite.c>
+	<IfModule mod_negotiation.c>
+		Options -MultiViews
+	</IfModule>
+
+	RewriteEngine On
+
+
+
+
+
+    #--------------------------------------------------------------------------------
+    # Redirect Trailing Slashes...
+    #--------------------------------------------------------------------------------
+
+	RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+
+
+
+
+
+
+    #--------------------------------------------------------------------------------
+    # Handle Front Controller...
+    #--------------------------------------------------------------------------------
+    # We don't want to allow user to visit Directory. So If the requested URI is 
+    # a directory, We still want to process it through Front Controller.
+    # That's why we comment out the following line.
+    #
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    #--------------------------------------------------------------------------------
+    
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+
+
+
+
+
+
+
+
+
+
+ 	#--------------------------------------------------------------------------------
+	# setting BASE
+ 	#--------------------------------------------------------------------------------
+ 	# RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+ 	# RewriteRule ^(.*) - [E=BASE:%1]
+	#--------------------------------------------------------------------------------
+	# Currently We don't need the Base Variable. Cause We are setting up Laravel at 
+	# DocumentRoot. If we need to set base variable
+    # We should Uncomment upper two lines.
+    #--------------------------------------------------------------------------------
+
+	SetEnv BASE 
+
+</IfModule>
+
+
+
+
+
+
+
+#--------------------------------------------------------------------------------
+# Setting Live site Address.
+#--------------------------------------------------------------------------------
+
+SetEnv SITE_ADDR http://sadakhata.com
