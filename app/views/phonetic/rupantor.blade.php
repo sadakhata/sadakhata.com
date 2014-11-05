@@ -12,13 +12,8 @@
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="{{ $versionUrl }}" />
 		<meta property="og:description" content="{{ $versionTitle }} | ভার্চুয়াল দুনিয়া রাঙিয়ে দিন বাংলা ভাষায়। আর বিশ্ব কে জানিয়ে দিন বাংলা ভাষা কতটা মায়াবী। মায়াবী এই বাংলা ভাষার ভাষাশহীদদের প্রতি অজস্র ভালোবাসা...Write Bangla from Any Device online. Using Sada khata you can write Bangla from Mobile without downloading any softwere" />
-        <meta property="og:image" content="{{asset('/assets/images/icon_128x128.png')}}" />
+		<meta property="og:image" content="{{asset('/assets/images/icon_128x128.png')}}" />
 		
-
-
-
-
-
 		<script type="text/javascript">
 			function getElm(s){return document.getElementById(s);}
 			function clearTextAreaInput()
@@ -54,7 +49,7 @@
 			</h3>
 		</div>
 		<ul class="pager">
-			<li class="next"><a href="{{url('keymap/'. $versionName)}}">কিম্যাপ</a></li>
+			<li class="next"><a target="_blank" href="{{url('keymap/'. $versionName)}}">কিম্যাপ</a></li>
 		</ul>
 		<div class="well">
 			<div class="panel panel-default">

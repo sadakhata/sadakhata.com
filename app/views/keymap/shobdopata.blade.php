@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<title>শব্দ পাতা | অক্ষরবিন্যাস</title>
-		<link rel="shortcut icon" href="{{asset('/assets/images/mukti.jpg')}}" />
+		<link rel="shortcut icon" href="{{asset('/assets/images/favicon.ico')}}" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="{{asset('/assets/bootstrap/css/bootstrap.min.css')}}">
