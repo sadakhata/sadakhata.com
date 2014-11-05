@@ -17,7 +17,7 @@ class KeymapController extends BaseController {
 	public static function view($version)
 	{
 		error_reporting(0);
-		
+
 		return View::make('keymap.' . $version);
 	}
 }

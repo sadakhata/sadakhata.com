@@ -17,7 +17,7 @@ class HelpController extends BaseController {
 	public static function help($about)
 	{
 		error_reporting(0);
-		
+
 		return View::make('help.' . $about);
 	}
 

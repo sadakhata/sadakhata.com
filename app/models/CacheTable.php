@@ -52,7 +52,7 @@ class CacheTable extends Eloquent {
 		if( ! empty($_COOKIE[self::$cookieName]) ) 
 		{
 			$userid = $_COOKIE[self::$cookieName];
-			
+
 			if(get_magic_quotes_gpc()) 
 			{
 				$userid = stripslashes($userid);
@@ -108,9 +108,9 @@ class CacheTable extends Eloquent {
 	public function setStatus($status)
 	{
 		$this->setCookie();
-		
+
 		$this->{self::$version} = $status;
-		
+
 		$this->save();
 	}
 

@@ -11,7 +11,7 @@ class HashTable extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'hashTable';
-	
+
 	/**
 	 * We don't have created_at and updated_at columns 
 	 *
@@ -34,7 +34,7 @@ class HashTable extends Eloquent {
 	 * @var array
 	 */
 	private $validChars = array("অ", "আ", "ই", "ঈ", "উ", "ঊ", "ঋ", "এ", "ঐ", "ও", "ঔ", "া", "ি", "ী", "ু", "ূ", "ৃ", "ে", "ৈ", "ো", "ৌ", "ক", "খ", "গ", "ঘ", "ঙ", "চ", "ছ", "জ", "ঝ", "ঞ", "ট", "ঠ", "ড", "ঢ", "ণ", "ত", "থ", "দ", "ধ", "ন", "প", "ফ", "ব", "ভ", "ম", "য", "র", "ল", "শ", "ষ", "স", "হ", "ড়", "ঢ়", "য়", "ৎ", "ং", "ঃ", "ঁ", "্");
-	
+
 	/**
 	 * Array of inserted words in hashTable
 	 *
@@ -66,13 +66,13 @@ class HashTable extends Eloquent {
 		if(mysql_errno() == 0)
 		{
 			$string = $this->fixChars($string);
-			
+
 			$str = $this->myExplode($string);
 
 			$mapping = array();
 
 			$len = count($str);
-			
+
 			for($i=0; $i < $len; $i++ )
 			{
 				$value = HashMaker::hashing($str[$i]);
@@ -83,7 +83,7 @@ class HashTable extends Eloquent {
 					// realValue => hashValue
 					$mapping[ $str[$i] ] = $value ;
 				}
-				
+
 			}
 
 			if(count($mapping) > 0 )
@@ -129,13 +129,13 @@ class HashTable extends Eloquent {
 		if(count($mapping) > 0)
 		{
 			$ara = array();
-			
+
 			$this->insertedDataList = array();
 
 			foreach ($mapping as $key => $value)
 			{
 				$ara[] = array('bangla' => $key, 'hash' => $value);
-				
+
 				$this->insertedDataList[] = $key;
 			}
 
@@ -165,11 +165,11 @@ class HashTable extends Eloquent {
 	private function fixChars($str)
 	{
 		$find = array(   "ব়", "ড়", "ঢ়", "য়");
-		
+
 		$replace = array("র",   "ড়",   "ঢ়",  "য়"  );
-		
+
 		$str = str_replace($find, $replace, $str);
-		
+
 		return $str;
 	}
 
@@ -183,17 +183,17 @@ class HashTable extends Eloquent {
 	public function myExplode($string)
 	{
 		$tok = explode(' ', $string);
-		
+
 		$str = array();
 
 		$len = count($tok);
-		
+
 		for($i=0; $i<$len; $i++)
 		{
 			$value = $tok[$i];
-			
+
 			$value = str_replace($this->validChars, '', $value);
-			
+
 			if(empty($value))
 			{
 				$str[] = $tok[$i];

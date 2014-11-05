@@ -40,7 +40,7 @@ class StatusUpdateController extends BaseController {
 	public static function update()
 	{
 		error_reporting(0);
-		
+
 		$status = isset($_POST['status']) ? $_POST['status'] : '';
 
 		if(get_magic_quotes_gpc())
@@ -71,11 +71,11 @@ class StatusUpdateController extends BaseController {
 		{
 
 			$appId  = $_ENV['FACEBOOK_APP_ID'];
-			
+
 			$appSecret  = $_ENV['FACEBOOK_APP_SECRET'];  
-			
+
 			//$canvasUrl  = "Your App Canvas Url"; 
-			
+
 			//$canvasPage  = "Your App canvas Page"; 
 			 
 			//include_once "facebook.php"; [[Loaded through helper]]
@@ -87,11 +87,11 @@ class StatusUpdateController extends BaseController {
 			));
 			 
 			$sent = false;
-			
+
 			$userData = null;
-			
+
 			$user = $facebook->getUser();
-			
+
 			if ($user)
 			{
 				try
@@ -100,9 +100,9 @@ class StatusUpdateController extends BaseController {
 				} 
 				catch (FacebookApiException $e)
 				{
-				
+
 				}
-				
+
 				if($status != '')
 				{
 					try 
@@ -110,7 +110,7 @@ class StatusUpdateController extends BaseController {
 						$facebook->api('/me/feed', 'POST', array(
 							'message' => $status
 						));
-						
+
 						$sent = true;
 
 						// As soon as the status has been updated successfully,
@@ -143,7 +143,7 @@ class StatusUpdateController extends BaseController {
 			else
 			{
 				return 'Something went Wrong, and The server can\'t handle this. Please inform us, if you notice something unusual.';
-				
+
 				error_log("error returning from " . __FILE__ . " at line " . __LINE__);
 			}
 		}

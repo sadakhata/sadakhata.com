@@ -35,9 +35,9 @@ class PhoneticController extends BaseController {
 		$data['shobdopata']['versionTitle'] = 'শব্দপাতা';
 
 		$data['shuvro']['versionTitle'] = 'শুভ্র সাদাখাতা';
-		
+
 		$input = isset($_POST['input']) ? $_POST['input'] : '';
-		
+
 		if(get_magic_quotes_gpc())
 		{
 			$input = stripslashes($input);
@@ -62,25 +62,25 @@ class PhoneticController extends BaseController {
 		//  We Know that, $version string will be always lowercase. 
 		//  If it's not true, then we need to make it lowercase first. 
 		$converterName = ucfirst($version) . 'Converter';
-		
+
 		$converter = new $converterName();
-		
+
 		$output = $converter->entobn($input);
 
 		if($version == 'shuvro')
 		{
 			$data[$version]['suggestion'] = $converter->getSuggestions();
-			
+
 			$data[$version]['suggestionJS'] = View::make('phonetic.suggestion', array('delimeter' => $converter->delimeter) )->render();
 		}
 
 		$data[$version]['input'] = $input;
-		
+
 		$data[$version]['output'] = $output;
 
 		//Calculate How Many time has been elapsed. And forward it to view. 
 		$data[$version]['elapsed_time'] = microtime(true) - $_SERVER['REQUEST_TIME'];
-		
+
 		$data[$version]['elapsed_time'] = substr($data[$version]['elapsed_time'], 0, 7);
 
 		return View::make('phonetic.rupantor', $data[$version]);

@@ -43,7 +43,7 @@ class MakeDatabaseController extends BaseController {
 			if(isset($_POST['banglaParagraph']))
 			{
 				$banglaparagraph = $_POST['banglaParagraph'];
-				
+
 				if(get_magic_quotes_gpc())
 				{
 					$banglaparagraph = stripslashes($banglaparagraph);
@@ -52,7 +52,7 @@ class MakeDatabaseController extends BaseController {
 				$hashtable = new HashTable();
 
 				$data['cntAddedData'] = $hashtable->insertMultipleRows($banglaparagraph);
-			
+
 				$data['insertedData'] = $hashtable->getInsertedDataList();
 			}
 
@@ -68,7 +68,7 @@ class MakeDatabaseController extends BaseController {
 	public static function adminLogin()
 	{
 		error_reporting(0);
-		
+
 		return View::make('makedatabase.adminlogin');
 	}
 }

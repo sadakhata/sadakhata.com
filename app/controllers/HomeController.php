@@ -21,7 +21,7 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 		error_reporting(0);
-		
+
 		return View::make('home');
 	}
 
