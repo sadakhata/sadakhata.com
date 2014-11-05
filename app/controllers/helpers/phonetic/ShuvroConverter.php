@@ -8,14 +8,14 @@
  * 	echo $converter->entobn('amar sonar bangla ami tomay valobasi');
  */
 class ShuvroConverter {
-	
+
 	/**
 	 * 2-dimentional suggestions.
 	 * 
 	 * @var array
 	 */
 	private $suggestions = array();
-	
+
 	/**
 	 * List of all the delimeters.
 	 *
@@ -42,21 +42,21 @@ class ShuvroConverter {
 	private function myExplode($string)
 	{
 		$last_into = true; // last into good
-		
+
 		$start = 0;
-		
+
 		$end = 0;
-		
+
 		$str = array();
-		
+
 		$delimeter = array();
-		
+
 		$english_number = array('.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-		
+
 		$bangla_number =  array('।', '০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯');
-		
+
 		$count = strlen($string);
-	
+
 		for($i = 0; $i < $count; $i++)
 		{
 			// preg_match('/[a-zA-Z:]/', $string[$i])
@@ -96,8 +96,8 @@ class ShuvroConverter {
 				$last_into = false;
 			}
 		}
-		
-		
+
+
 		if($last_into == true)
 		{
 			$str[] = substr($string, $start, $end-$start);
@@ -132,7 +132,7 @@ class ShuvroConverter {
 			for($i = 0; $i < $len; $i++)
 			{
 				$str[$i] = $avro->parse($str[$i]);
-				
+
 				$hashedString[] = substr( HashMaker::hashing($str[$i]), 0, 61);
 			}
 
@@ -144,17 +144,17 @@ class ShuvroConverter {
 			}
 
 		}
-		
+
 		$result = '';
 
 		for($i = 0; $i < $len; $i++ )
 		{
 			$this->suggestions[] = isset($hash[ $hashedString[$i] ]) ? $hash[ $hashedString[$i] ] : array() ;
-			
+
 			$this->bestWord($str[$i], $this->suggestions[$i]);
 
 			$result .= $this->suggestions[$i][0];
-			
+
 			$result .= isset($this->delimeter[$i]) ? $this->delimeter[$i] : ''; 
 		}
 
@@ -183,12 +183,12 @@ class ShuvroConverter {
 		}
 
 		$dist = 1000000000;
-		
+
 		for($i = 0; $i < $len; $i++)
 		{
 			//insert cost = 1, replace cost = 3, delete cost = 2.
 			$tmp = levenshtein($word, $words[$i], 1, 3, 2); 
-			
+
 			if($tmp < $dist)
 			{
 				$dist = $tmp;
@@ -199,9 +199,9 @@ class ShuvroConverter {
 
 		// swapping. We put the best value at index 0.
 		$tmp = $words[0];
-		
+
 		$words[0] = $words[$bestWordPosition];
-		
+
 		$words[$bestWordPosition]  = $tmp;
 
 		if(!in_array($word, $words))
@@ -218,20 +218,20 @@ class ShuvroConverter {
 	public function getSuggestions()
 	{
 		$len = count($this->suggestions);
-		
+
 		$ret = ''; 
-		
+
 		for($i = 0; $i < $len; $i++)
 		{
 			if(strlen($this->suggestions[$i][0]) == 0) continue;
-			
+
 			$ret = $ret . '<select id="s' . $i . '">';
-			
+
 			foreach ($this->suggestions[$i] as $value) 
 			{
 				$ret = $ret . '<option>' . $value . '</option>';
 			}
-			
+
 			$ret = $ret . '</select>';
 		}
 		return $ret;
