@@ -1,30 +1,26 @@
 # sadakhata.com Website!
----
 
-License
-=======
+Complete skeleton of http://www.sadakhata.com
 
----
+##License
 
 
-> The contents of this file are subject to the Mozilla Public License
-  Version 1.1 (the "License"); you may not use this file except in
-  compliance with the License. You may obtain a copy of the License       at http://www.mozilla.org/MPL/
-  
-  
+> The contents of this file are subject to the Mozilla Public License Version 1.1 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.mozilla.org/MPL/
+
+
 ##  Installation
-----------------
+
 You need to get `composer` installed in your machine.  
 
-Go to your working directory of sadakhata.
+Go to your working directory of sadakhata. `cd sadakhata.com`
 
 Run This command on your terminal: `composer install`  
 
-You need to setup some server variable and DataBase connection settings.
+You need to setup some server variables and Database connection settings.
 
 Make a file `.env.php` in the root, Where composer.json located at.  
 
-Put this content with appropiate settings:
+Put this content with appropriate settings:
 
 ```
 <?php
@@ -44,6 +40,6 @@ Put this content with appropiate settings:
 );
 ```  
 
-Then you need to setup appropiate DataBase settings in `app/config/database` or `app/config/production/database`
+Then you need to setup appropriate Database settings in `app/config/database` or `app/config/production/database`
 
-You need to make proper Database Tabels in the database. Still We don't make migratation system of Laravel.
+You need to make proper Database Tables in the database. Still We don't make migration system of Laravel.
