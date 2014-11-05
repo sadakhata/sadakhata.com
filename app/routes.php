@@ -45,7 +45,7 @@ Route::any('{version}', function($version){
 
 Route::get('keymap/{version}', function($version){
 	return KeymapController::view($version);
-})->where('version', 'basic|dhusor|shobdopata|shuvro');
+})->where('version', $allPhoneticConverterVersionNames);
 
 
 /*
