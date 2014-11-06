@@ -1,5 +1,14 @@
 <?php
 
+use Facebook\FacebookSession;
+use Facebook\FacebookRedirectLoginHelper;
+use Facebook\FacebookRequest;
+use Facebook\FacebookResponse;
+use Facebook\FacebookSDKException;
+use Facebook\FacebookRequestException;
+use Facebook\FacebookAuthorizationException;
+use Facebook\GraphObject;
+
 /**
  * StatusUpdateController class
  *
@@ -35,7 +44,7 @@ class StatusUpdateController extends BaseController {
 	 *
 	 * ANY /update
 	 *
-	 * @return string|View
+	 * @return View
 	 */
 	public static function update()
 	{
@@ -65,87 +74,86 @@ class StatusUpdateController extends BaseController {
 
 		if(empty($status))
 		{
-			return 'Sorry! Empty status can\'t be updated.';
+			$data  = array(
+				'title' => 'Empty Status Can\'t be updated!',
+				'reasons' => array(
+					'ফাঁকা স্ট্যাটাস পেয়েছি আমরা। ফাঁকা স্ট্যাটাস আপডেট করা সম্ভব না।',
+					'আপনার মোবাইল বা পিসির কুকি বন্ধ রয়েছে',
+					'আপনার স্ট্যাটাস ইতিমধ্যে আপডেট করা হয়ে গেছে!',
+					'সাদাখাতার ডাটাবেজে কোন একটি সমস্যা হয়েছে, কিছুক্ষন পর আবার চেষ্টা করে দেখুন!'
+				)
+			);
+
+			return View::make('statusupdate.update', $data);
 		}
 		else
 		{
+			session_start();
 
-			$appId  = $_ENV['FACEBOOK_APP_ID'];
+			FacebookSession::setDefaultApplication( $_ENV['FACEBOOK_APP_ID'], $_ENV['FACEBOOK_APP_SECRET'] );
 
-			$appSecret  = $_ENV['FACEBOOK_APP_SECRET'];  
+			$helper = new FacebookRedirectLoginHelper(url('update'));
 
-			//$canvasUrl  = "Your App Canvas Url"; 
-
-			//$canvasPage  = "Your App canvas Page"; 
-			 
-			//include_once "facebook.php"; [[Loaded through helper]]
-			 
-			$facebook = new Facebook(array(
-			  'appId'  => $appId,
-			  'secret' => $appSecret,
-			  'cookie' => true,
-			));
-			 
-			$sent = false;
-
-			$userData = null;
-
-			$user = $facebook->getUser();
-
-			if ($user)
+			try
 			{
+				$session = $helper->getSessionFromRedirect();
+			}
+			catch( Exception $ex )
+			{
+				// When validation fails or other local issues
+
+				$data = array(
+					'title'     => 'Something Went Wrong!',
+					'reasons'    => array(
+						'অ্যাপটি চলার জন্য আপনি প্রয়োজনীয় পারমিশন দেন নি।',
+						'ফেসবুকে বা সাদাখাতায় কোন একটি সমস্যা হয়েছে।'
+					)
+				);
+				return View::make('statusupdate.update', $data);
+			}
+
+			if(isset($session))
+			{
+				// User is logged in. Update The status now!
 				try
 				{
-					$userData = $facebook->api('/me');
-				} 
-				catch (FacebookApiException $e)
-				{
-
-				}
-
-				if($status != '')
-				{
-					try 
-					{
-						$facebook->api('/me/feed', 'POST', array(
+					$response = (new FacebookRequest(
+						$session, 'POST', '/me/feed', array(
 							'message' => $status
-						));
+						)
+					))->execute()->getGraphObject();
 
-						$sent = true;
+					$cachetable->setStatus('');
 
-						// As soon as the status has been updated successfully,
-						//  we delete the element of 'status' column.
-						$cachetable->setStatus('');
+					$data = array(
+						'title' => 'Status Updated Successfully!!!'
+					);
 
-						//  Return the success message.
-						//  It will be handled by Laravel.
-						return 'Status Updated Successfully!!!';
-					} 
-					catch (FacebookApiException $e)
-					{
-
-					}
+					return View::make('statusupdate.update', $data);
 				}
-			} 
-			else if(empty($_GET['code']) && empty($_GET['error']))
-			{
-				$loginUrl = $facebook->getLoginUrl(array(
-					'canvas' => 1,
-					'fbconnect' => 0,
-					'scope' => 'publish_stream',
-				));
-
-				//  The user is not logged in. Send them to Login or verify our app.
-				//  After successful login, user will came back here. And We will try
-				//  to update the status again.
-				return '<script type="text/javascript">window.location="' . $loginUrl . '";</script>';
+				catch(Exception $ex)
+				{
+					// something went wrong while updating the status
+					$data = array(
+						'title' => 'Something Went Wrong',
+						'reasons' => array(
+							'একই স্ট্যাটাস দুইবার আপডেট করার অনুমতি ফেসবুক দেয় না',
+							'আপনার স্ট্যাটাস হয়ত ইতিমধ্যেই আপডেট করা হয়ে গেছে!'
+						)
+					);
+					return View::make('statusupdate.update', $data);
+				}
 			}
 			else
 			{
-				return 'Something went Wrong, and The server can\'t handle this. Please inform us, if you notice something unusual.';
-
-				error_log("error returning from " . __FILE__ . " at line " . __LINE__);
+				//user is not logged in.
+				$data = array(
+					'title' => 'You are not Logged in!',
+					'loginUrl' => $helper->getLoginUrl(array('scope' => 'publish_actions'))
+				);
+				return View::make('statusupdate.update', $data);
 			}
+
 		}
 	}
 
