@@ -137,6 +137,7 @@ class StatusUpdateController extends BaseController {
 					$data = array(
 						'title' => 'Something Went Wrong',
 						'reasons' => array(
+							'অ্যাপটি চলার জন্য আপনি প্রয়োজনীয় পারমিশন দেন নি।',
 							'একই স্ট্যাটাস দুইবার আপডেট করার অনুমতি ফেসবুক দেয় না',
 							'আপনার স্ট্যাটাস হয়ত ইতিমধ্যেই আপডেট করা হয়ে গেছে!'
 						)
