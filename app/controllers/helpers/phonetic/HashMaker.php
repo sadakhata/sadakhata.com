@@ -20,15 +20,15 @@ class HashMaker {
 		// check if given parameter is a string.
 		if(is_string($bangla))
 		{
-			$search = array('ঈ', 'ঊ', 'খ', 'ঘ', 'ছ', 'ঝ', 'ট', 'ঠ', 'ড', 'ঢ', 'ণ', 'য', 'শ', 'ষ', 'ড়', 'ঢ়', 'ং', 'ৎ', 'ঋ');
+			$search  = array('ঈ', 'ঊ', 'খ', 'ঘ', 'ছ', 'ঝ', 'ট', 'ঠ', 'ড', 'ঢ', 'ণ', 'য', 'শ', 'ষ', 'ড়', 'ঢ়', 'ং', 'ৎ', 'ঋ'   );
 
 			$replace = array('ই', 'উ', 'ক', 'গ', 'চ', 'জ', 'ত', 'থ', 'দ', 'ধ', 'ন', 'জ', 'স', 'স', 'র', 'র', 'ঙ', 'ত', 'রি' );
 
 			$bangla = str_replace($search, $replace, $bangla);
 
-			$search = array('ী', 'ৈ', 'ূ', 'ো', 'ৌ', 'ঁ', '্ব', '্', 'ৃ', 'ঃ');
+			$search = array('ী', 'ৈ', 'ূ', 'ো', 'ৌ', 'ঁ', '্', 'ৃ', 'ঃ');
 
-			$replace =array('ি',  'ই', 'ু',  '',   'উ',   '',  '',    '', 'রি',   '');
+			$replace =array('ি',  'ই', 'ু',  '',   'উ',   '',   '', 'রি',  '');
 
 			$bangla = str_replace($search, $replace, $bangla);
 
