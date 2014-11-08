@@ -15,7 +15,7 @@ function change()
 
 		for(var i in d)
 		{
-			var e = getElm("s"+i.toString());
+			var e = document.getElementById("s"+i.toString());
 			if(e !== null)
 			{
 				replacetext+=e.options[e.selectedIndex].text;
@@ -24,10 +24,10 @@ function change()
 		}
 
 
-		var o=getElm('textAreaOutput');
+		var o=document.getElementById('textAreaOutput');
 		o.innerHTML=replacetext;
 		o.value = replacetext;
-		getElm('divOutput').innerHTML=replacetext.replace(new RegExp('\n','g'),'<br>');
+		document.getElementById('divOutput').innerHTML=replacetext.replace(new RegExp('\n','g'),'<br>');
 	}
 	catch(e)
 	{
