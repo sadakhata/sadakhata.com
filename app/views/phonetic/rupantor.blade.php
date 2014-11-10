@@ -66,6 +66,7 @@
 								{{ '<button type="button" onClick="change()" class="btn btn-default">Correction</button>' }}		
 							@endif
 							<button class="btn btn-default" type="submit">ফেসবুকে স্ট্যাটাস হিসেবে দিন</button>
+							<button type="button"  onClick="tweet()" class="btn btn-primary">টুইট করুন</button>
 						</center>
 					</div>
 				</form>
@@ -76,3 +77,13 @@
 	</body>
 </html>
 <script type="text/javascript">fixEmoticon();</script>
+<script type="text/javascript">
+function tweet()
+{
+	var twitterStatusCharacterLimit = 140;
+	var text = document.getElementById('textAreaOutput').value;
+	text = text.substr(0, twitterStatusCharacterLimit);
+	var link = "https://twitter.com/intent/tweet?text="+text;
+	window.location.assign( link );
+}
+</script>
