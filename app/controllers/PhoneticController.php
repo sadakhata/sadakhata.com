@@ -24,17 +24,11 @@ class PhoneticController extends BaseController {
 			App::abort(404);
 		}
 
-		$data[$version]['versionName'] = $version;
+		$data['versionName'] = $version;
 
-		$data[$version]['versionUrl'] = url($version);
+		$data['versionUrl'] = url($version);
 
-		$data['basic']['versionTitle'] = 'সাদাখাতা বেসিক';
-
-		$data['dhusor']['versionTitle'] = 'ধূসর সাদাখাতা';
-
-		$data['shobdopata']['versionTitle'] = 'শব্দপাতা';
-
-		$data['shuvro']['versionTitle'] = 'শুভ্র সাদাখাতা';
+		$data['versionTitle'] = Lang::get('messages.' . $version);
 
 		$input = isset($_POST['input']) ? $_POST['input'] : '';
 
@@ -69,21 +63,21 @@ class PhoneticController extends BaseController {
 
 		if($version == 'shuvro')
 		{
-			$data[$version]['suggestion'] = $converter->getSuggestions();
+			$data['suggestion'] = $converter->getSuggestions();
 
-			$data[$version]['suggestionJS'] = View::make('phonetic.suggestion', array('delimeter' => $converter->delimeter) )->render();
+			$data['suggestionJS'] = View::make('phonetic.suggestion', array('delimeter' => $converter->delimeter) )->render();
 		}
 
-		$data[$version]['input'] = $input;
+		$data['input'] = $input;
 
-		$data[$version]['output'] = $output;
+		$data['output'] = $output;
 
 		//Calculate How Many time has been elapsed. And forward it to view. 
-		$data[$version]['elapsed_time'] = microtime(true) - $_SERVER['REQUEST_TIME'];
+		$data['elapsed_time'] = microtime(true) - $_SERVER['REQUEST_TIME'];
 
-		$data[$version]['elapsed_time'] = substr($data[$version]['elapsed_time'], 0, 7);
+		$data['elapsed_time'] = substr($data['elapsed_time'], 0, 7);
 
-		return View::make('phonetic.rupantor', $data[$version]);
+		return View::make('phonetic.rupantor', $data);
 	}
 }
 

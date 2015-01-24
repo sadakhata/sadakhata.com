@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/bootstrap/css/bootstrap.min.css' )}}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/custom.css') }}">
 		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/images/favicon.ico') }}" />
@@ -23,13 +23,13 @@
 			</h3>
 		</div>
 		<ul class="pager">
-			<li class="next"><a target="_blank" href="{{url('keymap/'. $versionName)}}">কিম্যাপ</a></li>
+			<li class="next"><a target="_blank" href="{{url('keymap/'. $versionName)}}">{{Lang::get('messages.keymap')}}</a></li>
 		</ul>
 		<div class="well">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						এখানে ইংরেজী ফন্টে বাংলা লিখুনঃ
+						{{Lang::get('messages.writeBanglaHere')}}
 					</h3>
 				</div>
 				<div class="panel-body">
@@ -38,7 +38,7 @@
 							<textarea class="form-control" id="textAreaInput" name="input">{{ $input }}</textarea>
 						</div>
 						<center>
-							<button type="submit" class="btn btn-default">মায়াবী বাংলায় রূপান্তর</button>
+							<button type="submit" class="btn btn-default">{{Lang::get('messages.convert')}}</button>
 							<button type="button" class="btn btn-danger" onclick="getElementById('textAreaInput').innerHTML='';">Clear Input Box</button>
 						</center>
 					</form>
@@ -65,8 +65,8 @@
 							@if($versionName == "shuvro")
 								{{ '<button type="button" onClick="change()" class="btn btn-default">Correction</button>' }}		
 							@endif
-							<button class="btn btn-default" type="submit">ফেসবুকে স্ট্যাটাস হিসেবে দিন</button>
-							<button type="button"  onClick="tweet()" class="btn btn-primary">টুইট করুন</button>
+							<button class="btn btn-default" type="submit">{{Lang::get('messages.updateFbStatus')}}</button>
+							<button type="button"  onClick="tweet()" class="btn btn-primary">{{Lang::get('messages.tweet')}}</button>
 						</center>
 					</div>
 				</form>
