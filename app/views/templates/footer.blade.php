@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-md-4">
 		<li>
-			<a href="http://facebook.com/sadakhata"><b>{{Lang::get('names.facebookPage')}}</b></a>
+			<a href="http://facebook.com/sadakhata"><b>{{Lang::get('extras.facebookPage')}}</b></a>
 		</li>
 	</div>
 
@@ -42,7 +42,7 @@
 		<li>
 			<b>
 				<a href="{{url('/')}}">
-					{{Lang::get('names.homePage')}}
+					{{Lang::get('extras.homePage')}}
 				</a>
 			</b>
 		</li>

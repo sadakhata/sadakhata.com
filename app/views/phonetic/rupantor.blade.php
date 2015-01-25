@@ -7,11 +7,11 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/custom.css') }}">
 		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/images/favicon.ico') }}" />
 		<title>{{ $versionTitle }}</title>
-		<meta name="description" content="{{ $versionTitle }} | ভার্চুয়াল দুনিয়া রাঙিয়ে দিন বাংলা ভাষায়। আর বিশ্ব কে জানিয়ে দিন বাংলা ভাষা কতটা মায়াবী। মায়াবী এই বাংলা ভাষার ভাষাশহীদদের প্রতি অজস্র ভালোবাসা...Write Bangla from Any Device online. Using Sada khata you can write Bangla from Mobile without downloading any softwere">
+		<meta name="description" content="{{ $versionTitle }} | {{Lang::get('messages.virtualDuniyaRangiyeDin')}}...Write Bangla from Any Device online. Using Sada khata you can write Bangla from Mobile without downloading any softwere">
 		<meta property="og:title" content="{{ $versionTitle }}" />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="{{ $versionUrl }}" />
-		<meta property="og:description" content="{{ $versionTitle }} | ভার্চুয়াল দুনিয়া রাঙিয়ে দিন বাংলা ভাষায়। আর বিশ্ব কে জানিয়ে দিন বাংলা ভাষা কতটা মায়াবী। মায়াবী এই বাংলা ভাষার ভাষাশহীদদের প্রতি অজস্র ভালোবাসা...Write Bangla from Any Device online. Using Sada khata you can write Bangla from Mobile without downloading any softwere" />
+		<meta property="og:description" content="{{ $versionTitle }} | {{Lang::get('messages.virtualDuniyaRangiyeDin')}}...Write Bangla from Any Device online. Using Sada khata you can write Bangla from Mobile without downloading any softwere" />
 		<meta property="og:image" content="{{asset('/assets/images/icon_128x128.png')}}" />
 		<script type="text/javascript" src="{{asset('/assets/js/fixEmoticon.js')}}"></script>
 	</head>
@@ -23,7 +23,7 @@
 			</h3>
 		</div>
 		<ul class="pager">
-			<li class="next"><a target="_blank" href="{{url('keymap/'. $versionName)}}">{{Lang::get('names.keymap')}}</a></li>
+			<li class="next"><a target="_blank" href="{{url('keymap/'. $versionName)}}">{{Lang::get('extras.keymap')}}</a></li>
 		</ul>
 		<div class="well">
 			<div class="panel panel-default">

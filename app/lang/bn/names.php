@@ -1,11 +1,10 @@
 <?php
 
 return array(
+	'sadakhata' => 'সাদাখাতা',
+	'phoneticBanglaConverter' => 'ফোনেটিক বাংলা কনভার্টার',
 	'basic' => 'সাদাখাতা বেসিক',
 	'dhusor' => 'ধূসর সাদাখাতা',
 	'shobdopata' => 'শব্দপাতা',
 	'shuvro' => 'শুভ্র সাদাখাতা',
-	'keymap' => 'কিম্যাপ',
-	'facebookPage' => 'ফেসবুক পেইজ',
-	'homePage' => 'হোম পেইজ',
 );
