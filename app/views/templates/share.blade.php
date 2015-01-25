@@ -5,7 +5,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<center><small>আমাদের ফেসবুক পেইজ লাইক বা শেয়ার করুন</small></center>
+						<center><small>{{Lang::get('messages.likeOurFacebookPage')}}</small></center>
 					</h3>
 				</div>
 				<div class="panel-body" style="min-height: 100px;">
@@ -18,7 +18,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<center><small>গুগল প্লাসে শেয়ার করুন</small></center>
+						<center><small>{{Lang::get('messages.shareOnGooglePlus')}}</small></center>
 					</h3>
 				</div>
 				<div class="panel-body" style="min-height: 100px;">
@@ -30,7 +30,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<center><small>এই পেইজটি লাইক বা শেয়ার করুন</small></center>
+						<center><small>{{Lang::get('messages.likeThisPage')}}</small></center>
 					</h3>
 				</div>
 				<div class="panel-body" style="min-height: 100px;">
