@@ -23,7 +23,7 @@
 			</h3>
 		</div>
 		<ul class="pager">
-			<li class="next"><a target="_blank" href="{{url('keymap/'. $versionName)}}">{{Lang::get('messages.keymap')}}</a></li>
+			<li class="next"><a target="_blank" href="{{url('keymap/'. $versionName)}}">{{Lang::get('names.keymap')}}</a></li>
 		</ul>
 		<div class="well">
 			<div class="panel panel-default">
@@ -39,7 +39,7 @@
 						</div>
 						<center>
 							<button type="submit" class="btn btn-default">{{Lang::get('messages.convert')}}</button>
-							<button type="button" class="btn btn-danger" onclick="getElementById('textAreaInput').innerHTML='';">Clear Input Box</button>
+							<button type="button" class="btn btn-danger" onclick="getElementById('textAreaInput').innerHTML='';">{{Lang::get('messages.clearInputBox')}}</button>
 						</center>
 					</form>
 				</div>

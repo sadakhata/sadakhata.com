@@ -28,7 +28,7 @@ class PhoneticController extends BaseController {
 
 		$data['versionUrl'] = url($version);
 
-		$data['versionTitle'] = Lang::get('messages.' . $version);
+		$data['versionTitle'] = Lang::get('names.' . $version);
 
 		$input = isset($_POST['input']) ? $_POST['input'] : '';
 
