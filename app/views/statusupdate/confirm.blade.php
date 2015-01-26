@@ -23,7 +23,12 @@
                         <div class="form-group">
                             <textarea name="status" class="form-control">{{ $status }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-default">Confirm!</button>
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Confirm!
+                        </button>
+                        <button type="button" class="btn btn-danger" onclick="history.back(-1)">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel &amp; Back
+                        </button>
 
                     </form>
                 </div>
