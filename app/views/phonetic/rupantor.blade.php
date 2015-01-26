@@ -25,7 +25,11 @@
 			</h3>
 		</div>
 		<ul class="pager">
-			<li class="next"><a target="_blank" href="{{url('keymap/'. $versionName)}}">{{Lang::get('extras.keymap')}}</a></li>
+			<li class="next">
+				<a target="_blank" href="{{url('keymap/'. $versionName)}}">
+					<i class="fa fa-book fa-fw"></i>&nbsp; {{Lang::get('extras.keymap')}}
+				</a>
+			</li>
 		</ul>
 		<div class="well">
 			<div class="panel panel-default">
@@ -40,8 +44,12 @@
 							<textarea class="form-control" id="textAreaInput" name="input">{{ $input }}</textarea>
 						</div>
 						<center>
-							<button type="submit" class="btn btn-default">{{Lang::get('messages.convert')}}</button>
-							<button type="button" class="btn btn-danger" onclick="getElementById('textAreaInput').innerHTML='';">{{Lang::get('messages.clearInputBox')}}</button>
+							<button type="submit" class="btn btn-default">
+								<i class="fa fa-pencil fa-fw"></i>&nbsp; {{Lang::get('messages.convert')}}
+							</button>
+							<button type="button" class="btn btn-danger" onclick="getElementById('textAreaInput').innerHTML='';">
+								<i class="fa fa-trash-o fa-lg"></i>&nbsp; {{Lang::get('messages.clearInputBox')}}
+							</button>
 						</center>
 					</form>
 				</div>
