@@ -4,6 +4,8 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/bootstrap/css/bootstrap.min.css' )}}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/font-awesome/css/font-awesome.min.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/bootstrap-social.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/custom.css') }}">
 		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/images/favicon.ico') }}" />
 		<title>{{ $versionTitle }}</title>
@@ -65,8 +67,12 @@
 							@if($versionName == "shuvro")
 								{{ '<button type="button" onClick="change()" class="btn btn-default">Correction</button>' }}		
 							@endif
-							<button class="btn btn-default" type="submit">{{Lang::get('messages.updateFbStatus')}}</button>
-							<button type="button"  onClick="tweet()" class="btn btn-primary">{{Lang::get('messages.tweet')}}</button>
+							<button class="btn btn-social btn-facebook" type="submit">
+								<i class="fa fa-facebook"></i>{{Lang::get('messages.updateFbStatus')}}
+							</button>
+							<button type="button" onClick="tweet()" class="btn btn-social btn-twitter">
+								<i class="fa fa-twitter"></i>{{Lang::get('messages.tweet')}}
+							</button>
 						</center>
 					</div>
 				</form>
