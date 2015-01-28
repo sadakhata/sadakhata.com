@@ -77,10 +77,10 @@ class StatusUpdateController extends BaseController {
 			$data  = array(
 				'title' => 'Empty Status Can\'t be updated!',
 				'reasons' => array(
-					'ফাঁকা স্ট্যাটাস পেয়েছি আমরা। ফাঁকা স্ট্যাটাস আপডেট করা সম্ভব না।',
-					'আপনার মোবাইল বা পিসির কুকি বন্ধ রয়েছে',
-					'আপনার স্ট্যাটাস ইতিমধ্যে আপডেট করা হয়ে গেছে!',
-					'সাদাখাতার ডাটাবেজে কোন একটি সমস্যা হয়েছে, কিছুক্ষন পর আবার চেষ্টা করে দেখুন!'
+					Lang::get('facebook.weGotEmptyStatus'),
+					Lang::get('facebook.cookieDisabled'),
+					Lang::get('facebook.statusAlreadyUpdated'),
+					Lang::get('facebook.databaseError')
 				)
 			);
 
@@ -105,8 +105,8 @@ class StatusUpdateController extends BaseController {
 				$data = array(
 					'title'     => 'Something Went Wrong!',
 					'reasons'    => array(
-						'অ্যাপটি চলার জন্য আপনি প্রয়োজনীয় পারমিশন দেন নি।',
-						'ফেসবুকে বা সাদাখাতায় কোন একটি সমস্যা হয়েছে।'
+						Lang::get('facebook.permission'),
+						Lang::get('facebook.skOrFbError')
 					)
 				);
 				return View::make('statusupdate.update', $data);
@@ -137,9 +137,8 @@ class StatusUpdateController extends BaseController {
 					$data = array(
 						'title' => 'Something Went Wrong',
 						'reasons' => array(
-							'অ্যাপটি চলার জন্য আপনি প্রয়োজনীয় পারমিশন দেন নি।',
-							'একই স্ট্যাটাস দুইবার আপডেট করার অনুমতি ফেসবুক দেয় না',
-							'আপনার স্ট্যাটাস হয়ত ইতিমধ্যেই আপডেট করা হয়ে গেছে!'
+							Lang::get('facebook.permission'),
+							Lang::get('facebook.statusAlreadyUpdated'),
 						)
 					);
 					return View::make('statusupdate.update', $data);
