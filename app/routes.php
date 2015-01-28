@@ -74,3 +74,11 @@ Route::any('make', 'MakeDatabaseController@insertHashTable');
 Route::get('sitemap/sitemap.xml', function(){
 	return Response::view('sitemaps.sitemap')->header('Content-Type', 'text/xml;charset=utf-8');
 });
+
+
+/*
+ |--------------------------------------------------------------------------
+ | Registry JSadakhata
+ |--------------------------------------------------------------------------
+ */
+Route::get('pc', 'JSadakhataController@index');
