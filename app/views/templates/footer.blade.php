@@ -48,3 +48,11 @@
 		</li>
 	</div>
 </div>
+<hr />
+<p>
+	<h3>
+		<small>
+			Change Language to {{ HTML::link('/setLang/' . (App::getLocale() == 'en' ? 'bn' : 'en') , App::getLocale() == 'en' ? 'বাংলা' : 'English' ) }}
+		</small>
+	</h3>
+</p>
