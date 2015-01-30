@@ -3,6 +3,11 @@
 <div class="row">
 	<div class="col-md-4">
 		<li>
+			<b>
+				{{HTML::link('/', Lang::get('extras.homePage'))}}
+			</b>
+		</li>
+		<li>
 			<a href="http://facebook.com/sadakhata"><b>{{Lang::get('extras.facebookPage')}}</b></a>
 		</li>
 	</div>
@@ -41,9 +46,7 @@
 	<div class="col-md-4">
 		<li>
 			<b>
-				<a href="{{url('/')}}">
-					{{Lang::get('extras.homePage')}}
-				</a>
+				{{HTML::link('/pc', 'JSadakhata (for PC only)')}}
 			</b>
 		</li>
 	</div>

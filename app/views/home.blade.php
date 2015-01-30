@@ -58,6 +58,9 @@
 							{{Lang::get('names.shuvro')}}
 						</a>
 					</li>
+					<li>
+						{{HTML::link('/pc', 'JSadakhata (for PC only)')}}
+					</li>
 				</div>
 				<div class="col-md-4">
 					<b>
