@@ -82,3 +82,11 @@ Route::get('sitemap/sitemap.xml', function(){
  |--------------------------------------------------------------------------
  */
 Route::get('pc', 'JSadakhataController@index');
+
+
+/*
+ |--------------------------------------------------------------------------
+ | Registry Language settings
+ |--------------------------------------------------------------------------
+ */
+Route::get('setLang/{lang?}', 'SettingsController@setLang');

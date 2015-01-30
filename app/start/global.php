@@ -97,7 +97,21 @@ App::down(function()
 
 
 
+/*
+ |--------------------------------------------------------------------------
+ | Pre-processing of the app.
+ |--------------------------------------------------------------------------
+ | Added by Hasib Al Muhaimin
+ |
+ */
 
+App::before(function($request)
+{
+	if(Cookie::get('lang') == 'bn' || Cookie::get('lang') == 'en')
+	{
+		App::setLocale(Cookie::get('lang'));
+	}
+});
 
 
 
