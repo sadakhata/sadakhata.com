@@ -12,12 +12,11 @@
 		<meta property="og:image" content="{{asset('/assets/images/icon_128x128.png')}}" />
 		<meta name="keywords" content="bangla website, bangla writing tool, bangla writing software, sadakhata, sada khata, sadakhata.binhoster.com, write bangla from mobile, bangla writing, online bangla writing tool">
 
-
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/bootstrap/css/bootstrap.min.css' )}}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/font-awesome/css/font-awesome.min.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/bootstrap-social.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/custom.css') }}">
-		@include('templates.javascript.sdk')
+		@include('templates.javascript.analyticstracking')
 	</head>
 	<body>
 		@include('templates.header')

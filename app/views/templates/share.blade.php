@@ -1,3 +1,4 @@
+@include('templates.javascript.sdk')
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
@@ -21,7 +22,7 @@
 					</h3>
 				</div>
 				<div class="panel-body" style="min-height: 100px;">
-					<center><g:plusone annotation="inline"></g:plusone><center>
+					<center><div class="g-plusone" data-annotation="inline" data-width="300"></div><center>
 				</div>
 			</div>
 		</div>
