@@ -17,7 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/font-awesome/css/font-awesome.min.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/bootstrap-social.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/custom.css') }}">
-
+		@include('templates.javascript.sdk')
 	</head>
 	<body>
 		@include('templates.header')
