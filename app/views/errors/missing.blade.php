@@ -3,6 +3,22 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/images/favicon.ico') }}" />
+	
+	<!--
+		// New Logo Introduced.
+		// Configuration for Apple, Android, Windows 8/10
+	-->
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="/assets/images/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/assets/images/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="/assets/images/manifest.json">
+	<link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#e14938">
+	<meta name="msapplication-config" content="/assets/images/browserconfig.xml">
+	<meta name="theme-color" content="#e14938">
+
+	<!-- New Logo Configuration end. -->
+
 	<link rel="stylesheet" type="text/css" href="{{asset('/assets/bootstrap/css/bootstrap.min.css')}}">
 	<title>Page Not Found</title>
 
