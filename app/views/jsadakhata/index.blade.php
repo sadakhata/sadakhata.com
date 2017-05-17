@@ -83,12 +83,12 @@ html {
             <br />
             <img src="assets/jsadakhata/images/keymap.PNG" alt="avro keymap" class="img-polaroid">
         </div>
-        <h1>JSadakhata <small>JavaScript Implemention of sadakhata</small></h1>
+        <h1>JSadakhata <small>JavaScript Implementation of sadakhata</small></h1>
 
         <textarea id="write" style="width:90%;" rows="16" placeholder="এখানে ইংলিশ ফন্টে বাংলা লিখুন..."></textarea>
     </center>
 
-    
+
 </body>
 </html>
 
@@ -105,6 +105,3 @@ $(function() {
 
 });
 </script>
-
-
-
