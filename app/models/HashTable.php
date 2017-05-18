@@ -159,9 +159,9 @@ class HashTable extends Eloquent {
 	*/
 	private function fixChars($str)
 	{
-		$find = array(   "ব়", "ড়", "ঢ়", "য়");
+		$find = array(   "ব়", "ড়", "ঢ়", "য়", "অা", );
 
-		$replace = array("র",   "ড়",   "ঢ়",  "য়"  );
+		$replace = array("র",   "ড়",   "ঢ়",  "য়",  "আ", );
 
 		$str = str_replace($find, $replace, $str);
 
