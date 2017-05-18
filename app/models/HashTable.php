@@ -13,7 +13,7 @@ class HashTable extends Eloquent {
 	protected $table = 'hashTable';
 
 	/**
-	 * We don't have created_at and updated_at columns 
+	 * We don't have created_at and updated_at columns
 	 *
 	 * @var boolean
 	 */
@@ -63,42 +63,37 @@ class HashTable extends Eloquent {
 	 */
 	public function insertMultipleRows($string)
 	{
-		if(mysql_errno() == 0)
+
+		$string = $this->fixChars($string);
+
+		$str = $this->myExplode($string);
+
+		$mapping = array();
+
+		$len = count($str);
+
+		for($i=0; $i < $len; $i++ )
 		{
-			$string = $this->fixChars($string);
+			$value = HashMaker::hashing($str[$i]);
 
-			$str = $this->myExplode($string);
-
-			$mapping = array();
-
-			$len = count($str);
-
-			for($i=0; $i < $len; $i++ )
+			if( (strlen($value) > 0) && (strlen($str[$i]) > 0))
 			{
-				$value = HashMaker::hashing($str[$i]);
-
-				if( (strlen($value) > 0) && (strlen($str[$i]) > 0))
-				{
-					// Mapping like:
-					// realValue => hashValue
-					$mapping[ $str[$i] ] = $value ;
-				}
-
+				// Mapping like:
+				// realValue => hashValue
+				$mapping[ $str[$i] ] = $value ;
 			}
 
-			if(count($mapping) > 0 )
-			{
-				return $this->checkAndInsert($mapping);
-			}
-			else
-			{
-				return 0;
-			}
+		}
+
+		if(count($mapping) > 0 )
+		{
+			return $this->checkAndInsert($mapping);
 		}
 		else
 		{
 			return 0;
 		}
+
 	}
 
 	/**
@@ -175,7 +170,7 @@ class HashTable extends Eloquent {
 
 	/**
 	 * Explode a string and validate it.
-	 * 
+	 *
 	 * @param string $string
 	 *
 	 * @return array
