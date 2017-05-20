@@ -40,10 +40,17 @@ DirectorySlash Off
 
 <IfModule mod_rewrite.c>
 	RewriteEngine on
-	RewriteCond %{HTTP_HOST} !^www\.
-	RewriteCond %{HTTP_HOST} !^localhost
-	RewriteCond %{HTTP_HOST} !^127.0.0.1
-	RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+	# Abandoned(Deprecated) rule which append www prefix if the domain name doesn't have www prefix.
+	#RewriteCond %{HTTP_HOST} !^www\.
+	#RewriteCond %{HTTP_HOST} !^localhost
+	#RewriteCond %{HTTP_HOST} !^127.0.0.1
+	#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+	# Add www prefix if the domain name is just sadakhata.com
+	RewriteCond %{SERVER_NAME} =sadakhata.com
+	RewriteRule ^ https://www.%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+
 	RewriteCond %{REQUEST_URI} !^public
 	RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
