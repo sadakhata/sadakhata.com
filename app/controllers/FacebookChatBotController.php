@@ -95,6 +95,28 @@ class FacebookChatBotController extends BaseController {
 			),
 			'message' => array(
 				'text' => $text,
+				'quick_replies' => array(
+					array(
+						'content_type' => 'text',
+						'title' => 'Use Shuvro',
+						'payload' => 'shuvro',
+					),
+					array(
+						'content_type' => 'text',
+						'title' => 'Use Basic',
+						'payload' => 'basic',
+					),
+					array(
+						'content_type' => 'text',
+						'title' => 'Use Dhusor',
+						'payload' => 'dhusor',
+					),
+					array(
+						'content_type' => 'text',
+						'title' => 'Use Shobdopata',
+						'payload' => 'shobdopata',
+					),
+				),
 			),
 		);
 
