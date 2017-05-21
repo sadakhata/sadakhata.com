@@ -215,6 +215,7 @@ class FacebookChatBotController extends BaseController {
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
 		$result = curl_exec($curl);
+		curl_close($curl);
 	}
 
 }
