@@ -51,9 +51,13 @@ class FacebookChatBotController extends BaseController {
 
 			$senderIndexes = array(0, 'messaging', 0, 'sender', 'id');
 			$messageIndexes = array(0, 'messaging', 0, 'message', 'text');
+			$versionIndexes = array(0, 'messaging', 0, 'message', 'quick_reply', 'payload');
+			$timestampIndexes = array(0, 'messaging', 0, 'timestamp');
 
 			$sender = $entry;
 			$message = $entry;
+			$versionName = $entry;
+			$timestamp = $entry;
 
 			foreach ($senderIndexes as $value)
 			{
@@ -79,16 +83,96 @@ class FacebookChatBotController extends BaseController {
 				}
 			}
 
-			$shuvroConverter = new ShuvroConverter();
-			$text = $shuvroConverter->entobn($message);
+			foreach ($versionIndexes as $value)
+			{
+				if(array_key_exists($value, $versionName))
+				{
+					$versionName = $versionName[$value];
+				}
+				else
+				{
+					$versionName = NULL;
+					break;
+				}
+			}
 
-			$this->sendText($sender, $text);
+			foreach($timestampIndexes as $value)
+			{
+				if(array_key_exists($value, $timestamp))
+				{
+					$timestamp = $timestamp[$value];
+				}
+				else
+				{
+					$timestamp = '0';
+					break;
+				}
+			}
 
+			$validVersions = array('basic', 'dhusor', 'shobdopata', 'shuvro');
+
+			if($versionName == NULL)
+			{
+				$versionName = 'shuvro';
+				$setting = FacebookChatBotSetting::where('user_id', '=', $sender);
+
+				if($setting->count() > 0)
+				{
+					$setting = $setting->first();
+					$versionName = $setting->version;
+				}
+
+				if(in_array($versionName, $validVersions ))
+				{
+					$converterName = ucfirst($versionName) . 'Converter';
+					$converter = new $converterName();
+					$text = $converter->entobn($message);
+					$this->sendText($sender, $text);
+				}
+			}
+			else
+			{
+				$text = 'Ok. Sure!';
+				$this->sendText($sender, $text);
+
+				if(in_array($versionName, $validVersions ))
+				{
+					$oldMessage = FacebookChatBotMessage::where('user_id', '=', $sender);
+
+					if($oldMessage->count() > 0)
+					{
+						$oldMessage = $oldMessage->orderBy('received_at', 'desc')->first();
+						$message = $oldMessage->message;
+
+						$text = 'Here you go!';
+						$this->sendText($sender, $text);
+
+						$converterName = ucfirst($versionName) . 'Converter';
+						$converter = new $converterName();
+
+						$text = $converter->entobn($message);
+						$this->sendText($sender, $text);
+					}
+
+					$setting = FacebookChatBotSetting::firstOrNew(array('user_id' => $sender));
+					$setting->version = $versionName;
+					$setting->save();
+				}
+			}
+
+			FacebookChatBotMessage::create(array(
+				'user_id' => $sender,
+				'message' => $message,
+				'payload' => $jsonPayloadString,
+				'received_at' => $timestamp,
+			));
 		}
 	}
 
 	private function sendText($recipient, $text)
 	{
+		$text = htmlspecialchars_decode($text);
+
 		$payload = array(
 			'recipient' => array(
 				'id' => $recipient,
