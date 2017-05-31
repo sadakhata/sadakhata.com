@@ -90,3 +90,14 @@ Route::get('pc', 'JSadakhataController@index');
  |--------------------------------------------------------------------------
  */
 Route::get('setLang/{lang?}', 'SettingsController@setLang');
+
+
+/*
+ |--------------------------------------------------------------------------
+ | Facebook Chat Bot
+ |--------------------------------------------------------------------------
+ */
+
+Route::get('fb/chatbot', 'FacebookChatBotController@verify');
+
+Route::post('fb/chatbot', 'FacebookChatBotController@bot');
